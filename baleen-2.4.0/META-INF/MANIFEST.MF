@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: nishantha.hunukumbur
+Created-By: Apache Maven
+Build-Jdk: 1.8.0
+Main-Class: uk.gov.dstl.baleen.runner.Baleen
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
+  <name>Baleen Type System - Base</name>
+  <description>XML definition of the Baleen type system base annotations.
+
+This XML file classified as UK OFFICIAL.</description>
+  <version>2.0</version>
+  <vendor>Dstl</vendor>
+  <types>
+    <typeDescription>
+      <name>uk.gov.dstl.baleen.types.semantic.ReferenceTarget</name>
+      <description>A target type for the referent property, such that entities pointing to the same target are assumed to be coreferences. The target can therefore be thought of as a super-entity, though it has no properties or value of it's own. The span of this entity is taken to be the scope in which this reference target is valid.</description>
+      <supertypeName>uk.gov.dstl.baleen.types.BaleenAnnotation</supertypeName>
+    </typeDescription>
+    <typeDescription>
+      <name>uk.gov.dstl.baleen.types.Base</name>
+      <description>Base annotation with confidence and annotator properties.</description>
+      <supertypeName>uk.gov.dstl.baleen.types.BaleenAnnotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>confidence</name>
+          <description>Confidence value between 0 and 1 from annotation processor.</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>referent</name>
+          <description>Can be used to link a corefence to an entity to another (presuambly more definitive) mention of the same entity elsewhere in the text.</description>
+          <rangeTypeName>uk.gov.dstl.baleen.types.semantic.ReferenceTarget</rangeTypeName>
+        </featureDescription>        
+        </features>
+    </typeDescription>
+    <typeDescription>
+      <name>uima.tcas.DocumentAnnotation</name>
+      <description>Overriding the base DocumentAnntation to add additional features. The JCasGen code generated from this annotation replaces the default type in uima-document-annotation.jar (which should be removed from the classpath).</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>docType</name>
+          <description>The document type</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>sourceUri</name>
+          <description>A URI representing the source of the document</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>timestamp</name>
+          <description>The time at which the document was processed</description>
+          <rangeTypeName>uima.cas.Long</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>documentClassification</name>
+          <description>The security classification of the document</description>
+          <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>documentCaveats</name>
+          <description>An array of string values specifying handling caveats for the document.</description>
+          <rangeTypeName>uima.cas.StringArray</rangeTypeName>
+          <multipleReferencesAllowed>true</multipleReferencesAllowed>
+        </featureDescription>
+        <featureDescription>
+          <name>documentReleasability</name>
+          <description>Array of country designators to which the document is releasable.</description>
+          <rangeTypeName>uima.cas.StringArray</rangeTypeName>
+          <multipleReferencesAllowed>true</multipleReferencesAllowed>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  <typeDescription>
+      <name>uk.gov.dstl.baleen.types.BaleenAnnotation</name>
+      <description>A base class for annotations used by Baleen. Includes things like an internal ID and a function to generate an external ID.</description>
+      <supertypeName>uima.tcas.Annotation</supertypeName>
+      <features>
+        <featureDescription>
+        	<name>internalId</name>
+        	<description>An ID that is used internally to refer to the entity</description>
+        	<rangeTypeName>uima.cas.Long</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  <typeDescription>
+      <name>uk.gov.dstl.baleen.types.Pointer</name>
+      <description>A pointer to another annotation in the same document. Designed for general use (eg temporary working inside annotator) rather than having some specific semantic meaning (eg like coreference).</description>
+      <supertypeName>uk.gov.dstl.baleen.types.BaleenAnnotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>target</name>
+          <description>At target annotation to which this pointer refers.</description>
+          <rangeTypeName>uk.gov.dstl.baleen.types.BaleenAnnotation</rangeTypeName>
+        </featureDescription>
+      <featureDescription>
+          <name>targetId</name>
+          <description>Used to reference a (Baleen) annotation by its internal id. Useful for if you are pointing to a different jCas (in which case you can't use target)</description>
+          <rangeTypeName>uima.cas.Long</rangeTypeName>
+        </featureDescription>
+      </features>
+    </typeDescription>
+  </types>
+</typeSystemDescription>
